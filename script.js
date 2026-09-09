@@ -19,19 +19,40 @@ function checkPassword() {
 
     let score = 0;
 
+    // Check basic password requirements
     const goodLength = password.length >= 12;
-    // Check whether the password contains an uppercase letter
     const hasUppercase = /[A-Z]/.test(password);
     const hasLowercase = /[a-z]/.test(password);
     const hasNumber = /[0-9]/.test(password);
     const hasSpecial = /[^A-Za-z0-9]/.test(password);
 
+    // List of very common passwords
+    const commonPasswords = [
+        "password",
+        "123456",
+        "qwerty",
+        "admin",
+        "letmein"
+    ];
+
+    // Check if password is commonly used
+    const isCommonPassword = commonPasswords.includes(
+        password.toLowerCase()
+    );
+
+    // Check for 3 repeated characters in a row
+    const hasRepeatedCharacters = /(.)\1\1/.test(password);
+
+
+    // Update requirement checklist
     updateRequirement(lengthCheck, goodLength);
     updateRequirement(uppercaseCheck, hasUppercase);
     updateRequirement(lowercaseCheck, hasLowercase);
     updateRequirement(numberCheck, hasNumber);
     updateRequirement(specialCheck, hasSpecial);
 
+
+    // Add points
     if (goodLength) {
         score++;
     }
@@ -44,7 +65,6 @@ function checkPassword() {
         score++;
     }
 
-    
     if (hasNumber) {
         score++;
     }
@@ -53,15 +73,37 @@ function checkPassword() {
         score++;
     }
 
+
+    // Penalize repeated characters
+    if (hasRepeatedCharacters && score > 0) {
+        score--;
+    }
+
+
+    // Common passwords automatically receive a score of 0
+    if (isCommonPassword) {
+        score = 0;
+    }
+
+
+    // NOW update score display
     scoreText.textContent = `Score: ${score} / 5`;
 
+
+    // Update progress bar
     const percentage = (score / 5) * 100;
 
-progressBar.style.width = percentage + "%";
+    progressBar.style.width = percentage + "%";
 
+
+    // Update strength message
     if (password.length === 0) {
 
         strengthText.textContent = "Strength: Not Tested";
+
+    } else if (isCommonPassword) {
+
+        strengthText.textContent = "Strength: Very Common Password";
 
     } else if (score <= 2) {
 
@@ -76,46 +118,4 @@ progressBar.style.width = percentage + "%";
         strengthText.textContent = "Strength: Strong";
 
     }
-    const commonPasswords = [
-    "password",
-    "123456",
-    "qwerty",
-    "admin",
-    "letmein"
-];
-
-const isCommonPassword = commonPasswords.includes(password.toLowerCase());
-
-    const hasRepeatedCharacters = /(.)\1\1/.test(password);
-    if (isCommonPassword) {
-    score = 0;
 }
-}
-
-function updateRequirement(element, passed) {
-
-    if (passed) {
-
-        element.textContent = "✓ " + element.textContent.replace("✓ ", "").replace("✗ ", "");
-
-    } else {
-
-        element.textContent = "✗ " + element.textContent.replace("✓ ", "").replace("✗ ", "");
-
-    }
-}
-
-togglePassword.addEventListener("click", function () {
-
-    if (passwordInput.type === "password") {
-
-        passwordInput.type = "text";
-        togglePassword.textContent = "Hide Password";
-
-    } else {
-
-        passwordInput.type = "password";
-        togglePassword.textContent = "Show Password";
-
-    }
-});
