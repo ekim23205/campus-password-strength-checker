@@ -11,13 +11,17 @@ const specialCheck = document.getElementById("specialCheck");
 
 const togglePassword = document.getElementById("togglePassword");
 
+
+// Run checkPassword every time the user types
 passwordInput.addEventListener("input", checkPassword);
+
 
 function checkPassword() {
 
     const password = passwordInput.value;
 
     let score = 0;
+
 
     // Check basic password requirements
     const goodLength = password.length >= 12;
@@ -26,7 +30,8 @@ function checkPassword() {
     const hasNumber = /[0-9]/.test(password);
     const hasSpecial = /[^A-Za-z0-9]/.test(password);
 
-    // List of very common passwords
+
+    // List of common passwords
     const commonPasswords = [
         "password",
         "123456",
@@ -35,16 +40,18 @@ function checkPassword() {
         "letmein"
     ];
 
-    // Check if password is commonly used
+
+    // Check whether password is common
     const isCommonPassword = commonPasswords.includes(
         password.toLowerCase()
     );
+
 
     // Check for 3 repeated characters in a row
     const hasRepeatedCharacters = /(.)\1\1/.test(password);
 
 
-    // Update requirement checklist
+    // Update checklist
     updateRequirement(lengthCheck, goodLength);
     updateRequirement(uppercaseCheck, hasUppercase);
     updateRequirement(lowercaseCheck, hasLowercase);
@@ -52,7 +59,7 @@ function checkPassword() {
     updateRequirement(specialCheck, hasSpecial);
 
 
-    // Add points
+    // Calculate score
     if (goodLength) {
         score++;
     }
@@ -80,13 +87,13 @@ function checkPassword() {
     }
 
 
-    // Common passwords automatically receive a score of 0
+    // Common passwords get 0
     if (isCommonPassword) {
         score = 0;
     }
 
 
-    // NOW update score display
+    // Update score
     scoreText.textContent = `Score: ${score} / 5`;
 
 
@@ -119,3 +126,42 @@ function checkPassword() {
 
     }
 }
+
+
+// This function changes the checklist to ✓ or ✗
+function updateRequirement(element, passed) {
+
+    const text = element.textContent
+        .replace("✓ ", "")
+        .replace("✗ ", "");
+
+    if (passed) {
+
+        element.textContent = "✓ " + text;
+
+    } else {
+
+        element.textContent = "✗ " + text;
+
+    }
+}
+
+
+// Show / hide password button
+togglePassword.addEventListener("click", function () {
+
+    if (passwordInput.type === "password") {
+
+        passwordInput.type = "text";
+
+        togglePassword.textContent = "Hide Password";
+
+    } else {
+
+        passwordInput.type = "password";
+
+        togglePassword.textContent = "Show Password";
+
+    }
+
+});
