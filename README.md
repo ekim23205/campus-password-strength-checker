@@ -1,4 +1,4 @@
-# Password Strength Checker
+#Password Strength Checker
 
 A browser-based cybersecurity project that evaluates password strength using several password-security criteria.
 
