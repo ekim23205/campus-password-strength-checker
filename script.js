@@ -44,6 +44,7 @@ function checkPassword() {
         score++;
     }
 
+    
     if (hasNumber) {
         score++;
     }
@@ -75,6 +76,15 @@ progressBar.style.width = percentage + "%";
         strengthText.textContent = "Strength: Strong";
 
     }
+    const commonPasswords = [
+    "password",
+    "123456",
+    "qwerty",
+    "admin",
+    "letmein"
+];
+
+const isCommonPassword = commonPasswords.includes(password.toLowerCase());
 
     const hasRepeatedCharacters = /(.)\1\1/.test(password);
     if (isCommonPassword) {
