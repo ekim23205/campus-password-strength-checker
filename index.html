@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password Strength Checker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Password Strength Checker</h1>
+
+      <p>Enter a password below to check its strength.</p>
+
+      <!-- Password input -->
+      <input type="password" id="password" placeholder="Enter your password" />
+
+      <button id="togglePassword">Show Password</button>
+
+      <h2 id="strength">Strength: Not Tested</h2>
+
+<div class="progress-container">
+    <div id="progressBar" class="progress-bar"></div>
+</div>
+
+      <p id="score">Score: 0 / 5</p>
+
+      <ul>
+        <li id="lengthCheck">12+ characters</li>
+        <li id="uppercaseCheck">Uppercase letter</li>
+        <li id="lowercaseCheck">Lowercase letter</li>
+        <li id="numberCheck">Number</li>
+        <li id="specialCheck">Special character</li>
+      </ul>
+
+      <p class="privacy-note">
+        Passwords are checked locally in your browser and are not stored.
+      </p>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
