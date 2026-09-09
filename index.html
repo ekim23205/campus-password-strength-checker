@@ -8,36 +8,61 @@
   </head>
   <body>
     <div class="container">
-      <h1>Campus Password Strength Checker</h1>
 
-      <p>Enter a password below to check its strength.</p>
 
-      <!-- Password input -->
-      <input type="password" id="password" placeholder="Enter your password" />
+        <img
+            src="images/key.png"
+            alt="Key cybersecurity icon"
+            class="key-image"
+        />
 
-      <button id="togglePassword">Show Password</button>
+        <h1>Password Strength Checker</h1>
 
-      <h2 id="strength">Strength: Not Tested</h2>
+        <p class="subtitle">
+            Test your password and learn how to make it stronger.
+        </p>
 
-<div class="progress-container">
-    <div id="progressBar" class="progress-bar"></div>
-</div>
+        <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+        />
 
-      <p id="score">Score: 0 / 5</p>
+        <button id="togglePassword">
+            Show Password
+        </button>
 
-      <ul>
-        <li id="lengthCheck">12+ characters</li>
-        <li id="uppercaseCheck">Uppercase letter</li>
-        <li id="lowercaseCheck">Lowercase letter</li>
-        <li id="numberCheck">Number</li>
-        <li id="specialCheck">Special character</li>
-      </ul>
+        <h2 id="strength">
+            Strength: Not Tested
+        </h2>
 
-      <p class="privacy-note">
-        Passwords are checked locally in your browser and are not stored.
-      </p>
+        <div class="progress-container">
+            <div id="progressBar" class="progress-bar"></div>
+        </div>
+
+        <p id="score">
+            Score: 0 / 5
+        </p>
+
+        <ul>
+            <li id="lengthCheck">12+ characters</li>
+            <li id="uppercaseCheck">Uppercase letter</li>
+            <li id="lowercaseCheck">Lowercase letter</li>
+            <li id="numberCheck">Number</li>
+            <li id="specialCheck">Special character</li>
+        </ul>
+
+        <p class="privacy-note">
+            Passwords are checked locally in your browser and are not stored.
+        </p>
+
+        <p class="disclaimer">
+            Independent Virginia Tech student project.
+        </p>
+
     </div>
 
     <script src="script.js"></script>
+
   </body>
 </html>
