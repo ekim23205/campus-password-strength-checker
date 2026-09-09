@@ -145,7 +145,22 @@ function updateRequirement(element, passed) {
 
     }
 }
+function updateRequirement(element, passed) {
 
+    const originalText = element.textContent
+        .replace("✓ ", "")
+        .replace("✗ ", "");
+
+    if (passed) {
+
+        element.textContent = "✓ " + originalText;
+
+    } else {
+
+        element.textContent = "✗ " + originalText;
+
+    }
+}
 
 // Show / hide password button
 togglePassword.addEventListener("click", function () {
